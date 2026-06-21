@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ToDo List App</title>
 </head>
 <body>
-    
+    <div class="App">
+        <div class="SideBar">TEST</div>
+        <div class="TopBar">TEST</div>
+        <div class="TaskScreen">
+            <div class="TaskWindow">TEST????</div>
+        </div>
+    </div>
+    <dialog id="projectDialog">
+        <h1>Start new project:</h1>
+            <form action="">
+            <div class="formGroup">
+                <label for="project_name">Project Name:</label>
+                <input type="text" name="project_name" id="project_name">
+            </div>
+            <div class="formGroup">
+                <label for="projected_date">Projected Date:</label>
+                <input type="date" name="projected_date" id="projected_date">
+            </div>
+            
+        </form>
+    </dialog>
+    <dialog id="taskDialog">
+        <h1>Add new task:</h1>
+        <form action="">
+            <div class="formGroup">
+                <label for="task_name">Task Name:</label>
+                <input type="text" name="task_name" id="task_name">
+            </div>
+            <div class="formGroup">
+                <label for="task_priority">Priority:</label>
+                <select name="task_priority" id="task_priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="formGroup">
+                <label for="due_date">Due For:</label>
+                <input type="date" name="due_date" id="due_date">
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>
