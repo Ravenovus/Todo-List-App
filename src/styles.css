@@ -34,4 +34,13 @@ body{
     border-radius: 10px;
     margin:1vw;
     overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.taskItem{
+    display: grid;
+    width: 100%;
+    padding-right: 60px;
+    grid-template-columns: 24% 23% 24% 24% 4% 1%;
+    
 }
