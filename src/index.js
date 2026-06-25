@@ -18,3 +18,4 @@ let taskdial = document.querySelector("#taskDialog");
 //taskdial.showModal(); - add button and check if date is earlier than today (verify data)
 
 organizerController.init();
+taskdial.showModal();

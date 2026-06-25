@@ -5,6 +5,8 @@ export const userInterface ={
     
     //projectList: document.getElementsByClassName("ProjectList"),
     //tastWindow: document.querySelector(".TaskWindow"),
+    projectDial : document.querySelector("#projectDialog"),
+    taskDial : document.querySelector("#taskDialog"),
 
 
     updateProjectList(projects){
@@ -50,5 +52,22 @@ export const userInterface ={
         while(listToClear.firstChild){
             listToClear.removeChild(listToClear.lastChild);
         }
+    },
+
+    readTaskModal(){
+        let taskInformation = new Array();
+        taskInformation.push(document.querySelector("#task_name").value);
+        taskInformation.push(document.querySelector("#task_priority").value);
+        taskInformation.push(document.querySelector("#due_date").value);
+        return taskInformation;
+
+    },
+
+    closeTaskDialog(){
+        this.taskDial.close();
+    },
+
+    closeProjectDialog(){
+        this.projectDial.close();
     }
 }
