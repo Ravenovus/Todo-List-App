@@ -59,5 +59,29 @@
         <button id="cancelTaskAddition">Cancel</button>
         <button id="addTaskButton">Add</button>
     </dialog>
+     <dialog id="taskEditDialog">
+        <h1>Add new task:</h1>
+        <form action="">
+            <div class="formGroup">
+                <label for="task_name">Task Name:</label>
+                <input type="text" name="task_name" id="task_name_edit">
+            </div>
+            <div class="formGroup">
+                <label for="task_priority">Priority:</label>
+                <select name="task_priority" id="task_priority_edit">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="formGroup">
+                <label for="due_date">Due For:</label>
+                <input type="date" name="due_date" id="due_date_edit">
+            </div>
+        </form>
+        <div class="id_holder""></div>
+        <button id="cancelTaskEdit">Cancel</button>
+        <button id="editTaskButton">Commit</button>
+    </dialog>
 </body>
 </html>

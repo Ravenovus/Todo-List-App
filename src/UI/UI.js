@@ -7,6 +7,7 @@ export const userInterface ={
     //tastWindow: document.querySelector(".TaskWindow"),
     projectDial : document.querySelector("#projectDialog"),
     taskDial : document.querySelector("#taskDialog"),
+    taskEditDial : document.querySelector("#taskEditDialog"),
 
 
     updateProjectList(projects){
@@ -34,11 +35,14 @@ export const userInterface ={
             let taskDate = document.createElement("div");
             let taskStatus = document.createElement("div");
             let editButton = document.createElement("button");
+            newItem.id = task.taskId;
             taskName.textContent = task.name;
             taskPriority.textContent = task.priority;
             taskDate.textContent = task.dueDate;
             taskStatus.textContent = task.status;
+            editButton.classList.add("editButton");
             editButton.textContent = "EDIT";
+            
             newItem.appendChild(taskName);
             newItem.appendChild(taskPriority);
             newItem.appendChild(taskDate);
@@ -56,18 +60,49 @@ export const userInterface ={
 
     readTaskModal(){
         let taskInformation = new Array();
-        taskInformation.push(document.querySelector("#task_name").value);
+        //add form check here, return a flag to organizer to catch if its wrong
+        let taskName = document.querySelector("#task_name").value;
+        let dueDate = document.querySelector("#due_date").value;
+        console.log(dueDate);
+        if (taskName =="" || dueDate == ""){
+            return -1;
+        }
+        taskInformation.push(taskName);
         taskInformation.push(document.querySelector("#task_priority").value);
-        taskInformation.push(document.querySelector("#due_date").value);
+        taskInformation.push(dueDate);
         return taskInformation;
 
     },
 
+    openTaskDialog(){
+
+    },
+
     closeTaskDialog(){
+        document.querySelector("#task_name").value = "";
+        document.querySelector("#task_priority").value = "low";
+        document.querySelector("#due_date").value = "";
         this.taskDial.close();
+    },
+
+    openProjectDialog(){
+
     },
 
     closeProjectDialog(){
         this.projectDial.close();
+    },
+
+    openTaskEditDialog(editingTask){
+        document.querySelector("#task_name_edit").value = editingTask.name;
+        document.querySelector("#task_priority_edit").value = editingTask.priority;
+        document.querySelector("#due_date_edit").value = editingTask.dueDate;
+        document.querySelector(".id_holder").id = editingTask.taskId;
+        this.taskEditDial.showModal();
+
+    },
+
+    closeTaskEditDialog(){
+
     }
 }

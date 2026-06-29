@@ -44,3 +44,7 @@ body{
     grid-template-columns: 24% 23% 24% 24% 4% 1%;
     
 }
+
+.formGroup{
+    margin:16px;
+}

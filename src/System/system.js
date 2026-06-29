@@ -43,6 +43,14 @@ export const System = {
         let index = this.findProjectByID(this._currentSelected);
         return this._projects[index];
 
+    },
+
+    getCurrentProjectIndex(){
+        return this.findProjectByID(this._currentSelected);
+    },
+
+    findTaskById(id){
+        return this._projects[this.getCurrentProjectIndex()].getTaskById(id);
     }
 
 

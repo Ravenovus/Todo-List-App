@@ -26,4 +26,9 @@ export class Project{
         this._tasks.push(taskToAdd);
     }
 
+    getTaskById(id){
+        let index = this._tasks.findIndex(task => task.taskId === id);
+        return this.tasks[index];
+    }
+
 }

@@ -14,6 +14,7 @@ export const organizerController = {
 
         testProject.addTask(testTask);
         System.addProject(testProject);
+        console.log(System.getCurrentProject());
 
         this.addListeners();
 
@@ -25,21 +26,43 @@ export const organizerController = {
 
         for(var i = 0; i<listOfClickables.length; i++){
             listOfClickables[i].addEventListener("click", function(e){
-                //backEnd.select(listOfClickables[i].id);
                 console.log(e.target.id);
             })
         }
     },
 
     addListeners(){
-        document.querySelector("#addTaskButton").addEventListener(
-            "click", function(){
-                let taskInformation = userInterface.readTaskModal();
-                System.handleTaskInsertion(taskInformation);
-                userInterface.updateTaskList(System.getCurrentProject().tasks); //make it take "current project" via selection from system
+        document.querySelector("#cancelTaskAddition").addEventListener(
+            "click",function(){
                 userInterface.closeTaskDialog();
             }
         )
+        //Add Task Button//
+        document.querySelector("#addTaskButton").addEventListener(
+            "click", function(){
+                let taskInformation = userInterface.readTaskModal();
+                console.log(typeof(taskInformation));
+                if(typeof(taskInformation) == "number"){
+                    console.log("WRONG INFO");
+                    return;
+                }
+                System.handleTaskInsertion(taskInformation);
+                userInterface.updateTaskList(System.getCurrentProject().tasks);
+                userInterface.closeTaskDialog();
+                let editButton = document.querySelector(".editButton");
+                editButton.addEventListener("click", function(e){
+                    console.log(e.target.parentNode.id);
+                    let taskToEdit = System.findTaskById(e.target.parentNode.id);
+                    console.log(taskToEdit);
+                    console.log("Im being clicked");
+                    userInterface.openTaskEditDialog(taskToEdit);
+                })
+            }
+        )
+        //----------------//
+        //Edit Task Menu//
+        //rework this section, only adding a task adds a listener, not ok
+
     }
 
 
