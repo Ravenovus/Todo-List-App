@@ -103,6 +103,6 @@ export const userInterface ={
     },
 
     closeTaskEditDialog(){
-
+        this.taskEditDial.close();
     }
 }

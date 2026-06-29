@@ -16,22 +16,24 @@ export const organizerController = {
         System.addProject(testProject);
         console.log(System.getCurrentProject());
 
-        this.addListeners();
+        
 
         userInterface.updateProjectList(System.Projects);
 
         userInterface.updateTaskList(testProject.tasks);
 
-        let listOfClickables = document.getElementsByClassName("clickable");
+        this.addListeners();
 
-        for(var i = 0; i<listOfClickables.length; i++){
-            listOfClickables[i].addEventListener("click", function(e){
-                console.log(e.target.id);
-            })
-        }
+        
     },
 
     addListeners(){
+        document.querySelector("#cancelTaskEdit").addEventListener(
+            "click", function(){
+                userInterface.closeTaskEditDialog();
+            }
+        )
+
         document.querySelector("#cancelTaskAddition").addEventListener(
             "click",function(){
                 userInterface.closeTaskDialog();
@@ -49,21 +51,31 @@ export const organizerController = {
                 System.handleTaskInsertion(taskInformation);
                 userInterface.updateTaskList(System.getCurrentProject().tasks);
                 userInterface.closeTaskDialog();
-                let editButton = document.querySelector(".editButton");
-                editButton.addEventListener("click", function(e){
-                    console.log(e.target.parentNode.id);
-                    let taskToEdit = System.findTaskById(e.target.parentNode.id);
-                    console.log(taskToEdit);
-                    console.log("Im being clicked");
-                    userInterface.openTaskEditDialog(taskToEdit);
-                })
+                updateEditFunctionListeners();
             }
         )
+        let listOfClickables = document.getElementsByClassName("clickable");
+        for(var i = 0; i<listOfClickables.length; i++){
+            listOfClickables[i].addEventListener("click", function(e){
+                console.log(e.target.id);
+            })
+        }
+
+        updateEditFunctionListeners();
+
+        function updateEditFunctionListeners() {
+            let listOfEditButtons = document.getElementsByClassName("editButton");
+            for (var i = 0; i < listOfEditButtons.length; i++) {
+                listOfEditButtons[i].addEventListener("click", function (e) {
+                    let taskToEdit = System.findTaskById(e.target.parentNode.id);
+                    userInterface.openTaskEditDialog(taskToEdit);
+                });
+            }
+        }
         //----------------//
         //Edit Task Menu//
         //rework this section, only adding a task adds a listener, not ok
-
+        // make add listeners take in a bool to check if initial load, use it to separate the addition
     }
-
 
 }
