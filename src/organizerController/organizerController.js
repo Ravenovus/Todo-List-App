@@ -5,7 +5,7 @@ import { Task } from "../System/Classes/task.js";
 
 
 //TOMORROW - MUST
-// Add task addition button to UI, tie in the task addition functionality
+// Add task addition button to UI, tie in the task addition functionality V
 // Rework Task Edit form, must have Status choices as well
 // Tie in the edit to update onscreen
 // Add New Project Button
