@@ -35,6 +35,14 @@ export const System = {
         this.Projects[this.findProjectByID(this._currentSelected)].addTask(newTask);
     },
 
+    handleTaskEdit(taskInformation){
+        let taskToEdit = this.Projects[this.findProjectByID(this._currentSelected)].findTaskById(taskInformation[4]);
+        taskToEdit.name = taskInformation[0];
+        taskToEdit.priority = taskInformation[1];
+        taskToEdit.dueDate = taskInformation[2];
+        taskToEdit.status = taskInformation[3];
+    },
+
     findProjectByID(id){
         return this._projects.findIndex(project => project.projectId === id);
     },

@@ -75,7 +75,7 @@ export const userInterface ={
     },
 
     openTaskDialog(){
-
+        this.taskDial.showModal();
     },
 
     closeTaskDialog(){

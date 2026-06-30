@@ -4,13 +4,18 @@ import { Project } from "../System/Classes/project.js";
 import { Task } from "../System/Classes/task.js";
 
 
-//initial refactor from index to separate in order to clean index
+//TOMORROW - MUST
+// Add task addition button to UI, tie in the task addition functionality
+// Rework Task Edit form, must have Status choices as well
+// Tie in the edit to update onscreen
+// Add New Project Button
+// Add switching between the projects functionality
 
 export const organizerController = {
 
     init(){
         let testProject = new Project("testProject", "test Date string");
-        let testTask = new Task("testTask", "low", "another test");       
+        let testTask = new Task("testTask", "Medium", "another test");       
 
         testProject.addTask(testTask);
         System.addProject(testProject);
@@ -28,6 +33,12 @@ export const organizerController = {
     },
 
     addListeners(){
+        document.querySelector("#newTaskButton").addEventListener(
+            "click", function(){
+                userInterface.openTaskDialog();
+            }
+        )
+
         document.querySelector("#cancelTaskEdit").addEventListener(
             "click", function(){
                 userInterface.closeTaskEditDialog();
@@ -49,9 +60,9 @@ export const organizerController = {
                     return;
                 }
                 System.handleTaskInsertion(taskInformation);
-                userInterface.updateTaskList(System.getCurrentProject().tasks);
+                updateTaskListSequence();
                 userInterface.closeTaskDialog();
-                updateEditFunctionListeners();
+                
             }
         )
         let listOfClickables = document.getElementsByClassName("clickable");
@@ -63,6 +74,14 @@ export const organizerController = {
 
         updateEditFunctionListeners();
 
+
+
+
+        function updateTaskListSequence() {
+            userInterface.updateTaskList(System.getCurrentProject().tasks);
+            updateEditFunctionListeners();
+        }
+
         function updateEditFunctionListeners() {
             let listOfEditButtons = document.getElementsByClassName("editButton");
             for (var i = 0; i < listOfEditButtons.length; i++) {
@@ -72,10 +91,7 @@ export const organizerController = {
                 });
             }
         }
-        //----------------//
-        //Edit Task Menu//
-        //rework this section, only adding a task adds a listener, not ok
-        // make add listeners take in a bool to check if initial load, use it to separate the addition
+
     }
 
 }

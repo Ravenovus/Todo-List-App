@@ -19,6 +19,7 @@ export class Task{
     get status(){return this._status;}
     get taskId(){return this._taskId;}
 
+    set name(value){this._name = value;}
     set priority(value){this._priority = value;}
     set dueDate(value){this._dueDate = value;}
     set status(value){this._status = value;}
