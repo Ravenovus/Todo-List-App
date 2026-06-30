@@ -63,7 +63,6 @@ export const userInterface ={
         //add form check here, return a flag to organizer to catch if its wrong
         let taskName = document.querySelector("#task_name").value;
         let dueDate = document.querySelector("#due_date").value;
-        console.log(dueDate);
         if (taskName =="" || dueDate == ""){
             return -1;
         }
@@ -72,6 +71,21 @@ export const userInterface ={
         taskInformation.push(dueDate);
         return taskInformation;
 
+    },
+
+    readTaskEditModal(){
+        let taskInformation = new Array();
+        let taskName = document.querySelector("#task_name_edit").value;
+        let dueDate = document.querySelector("#due_date_edit").value;
+        if (taskName =="" || dueDate == ""){
+            return -1;
+        }
+        taskInformation.push(taskName);
+        taskInformation.push(document.querySelector("#task_priority_edit").value);
+        taskInformation.push(dueDate);
+        taskInformation.push(document.querySelector("#task_status_edit").value);
+        taskInformation.push(document.querySelector(".id_holder").id);
+        return taskInformation;
     },
 
     openTaskDialog(){
@@ -97,6 +111,7 @@ export const userInterface ={
         document.querySelector("#task_name_edit").value = editingTask.name;
         document.querySelector("#task_priority_edit").value = editingTask.priority;
         document.querySelector("#due_date_edit").value = editingTask.dueDate;
+        document.querySelector("#task_status_edit").value = editingTask.status;
         document.querySelector(".id_holder").id = editingTask.taskId;
         this.taskEditDial.showModal();
 

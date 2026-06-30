@@ -6,11 +6,11 @@ import { Task } from "../System/Classes/task.js";
 
 //TOMORROW - MUST
 // Add task addition button to UI, tie in the task addition functionality V
-// Rework Task Edit form, must have Status choices as well
+// Rework Task Edit form, must have Status choices as well V
 // Tie in the edit to update onscreen
 // Add New Project Button
 // Add switching between the projects functionality
-
+// Add delete task button next to edit BUT also add a confirmation Modal
 export const organizerController = {
 
     init(){
@@ -63,6 +63,20 @@ export const organizerController = {
                 updateTaskListSequence();
                 userInterface.closeTaskDialog();
                 
+            }
+        )
+
+        document.querySelector("#editTaskButton").addEventListener(
+            "click", function(){
+                let taskInformation = userInterface.readTaskEditModal();
+                console.log(typeof(taskInformation));
+                if(typeof(taskInformation) == "number"){
+                    console.log("WRONG INFO");
+                    return; //Temp form check to be made proper later
+                }
+                System.handleTaskEdit(taskInformation);
+                updateTaskListSequence();
+                userInterface.closeTaskEditDialog();
             }
         )
         let listOfClickables = document.getElementsByClassName("clickable");

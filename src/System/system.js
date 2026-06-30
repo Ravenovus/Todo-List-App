@@ -36,7 +36,7 @@ export const System = {
     },
 
     handleTaskEdit(taskInformation){
-        let taskToEdit = this.Projects[this.findProjectByID(this._currentSelected)].findTaskById(taskInformation[4]);
+        let taskToEdit = this.Projects[this.getCurrentProjectIndex()].getTaskById(taskInformation[4]);
         taskToEdit.name = taskInformation[0];
         taskToEdit.priority = taskInformation[1];
         taskToEdit.dueDate = taskInformation[2];
