@@ -29,6 +29,15 @@ export const System = {
 
     get Projects(){return this._projects;},
 
+    handleNewProject(projectInformation){
+        let newProject = new Project(projectInformation[0],projectInformation[1]);
+        this.addProject(newProject);
+    },
+
+    handleProjectEdit(projectInformation){
+
+    },
+
     
     handleTaskInsertion(taskInformation){
         let newTask = new Task(taskInformation[0],taskInformation[1],taskInformation[2]);

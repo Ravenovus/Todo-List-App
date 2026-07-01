@@ -58,6 +58,18 @@ export const userInterface ={
         }
     },
 
+    readNewProjectModal(){
+        let projectInformation = new Array();
+        let projectName = document.querySelector("#project_name").value;
+        let projectDate = document.querySelector("#projected_date").value;
+        if(projectName == "" || projectDate == ""){
+            return -1;
+        }
+        projectInformation.push(projectName);
+        projectInformation.push(projectDate);
+        return projectInformation;
+    },
+
     readTaskModal(){
         let taskInformation = new Array();
         //add form check here, return a flag to organizer to catch if its wrong
@@ -100,10 +112,12 @@ export const userInterface ={
     },
 
     openProjectDialog(){
-
+        this.projectDial.showModal();
     },
 
     closeProjectDialog(){
+        document.querySelector("#project_name").value = "";
+        document.querySelector("#projected_date").value = "";
         this.projectDial.close();
     },
 

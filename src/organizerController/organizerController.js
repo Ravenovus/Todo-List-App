@@ -7,8 +7,8 @@ import { Task } from "../System/Classes/task.js";
 //TOMORROW - MUST
 // Add task addition button to UI, tie in the task addition functionality V
 // Rework Task Edit form, must have Status choices as well V
-// Tie in the edit to update onscreen
-// Add New Project Button
+// Tie in the edit to update onscreen V
+// Add New Project Button V
 // Add switching between the projects functionality
 // Add delete task button next to edit BUT also add a confirmation Modal
 export const organizerController = {
@@ -33,6 +33,30 @@ export const organizerController = {
     },
 
     addListeners(){
+        document.querySelector("#newProjectButton").addEventListener(
+            "click", function(){
+                userInterface.openProjectDialog();
+            }
+        )
+        document.querySelector("#cancelProjectAddition").addEventListener(
+            "click", function(){
+                userInterface.closeProjectDialog();
+            }
+        )
+        document.querySelector("#commitNewProject").addEventListener(
+            "click", function(){
+                let projectInformation = userInterface.readNewProjectModal();
+                if(typeof(projectInformation) == "number"){
+                    console.log("WRONG INFO");
+                    return;
+                }
+                System.handleNewProject(projectInformation);
+                updateProjectListSequence();
+                updateTaskListSequence();
+                userInterface.closeProjectDialog();
+            }
+        )
+
         document.querySelector("#newTaskButton").addEventListener(
             "click", function(){
                 userInterface.openTaskDialog();
@@ -50,7 +74,6 @@ export const organizerController = {
                 userInterface.closeTaskDialog();
             }
         )
-        //Add Task Button//
         document.querySelector("#addTaskButton").addEventListener(
             "click", function(){
                 let taskInformation = userInterface.readTaskModal();
@@ -102,6 +125,22 @@ export const organizerController = {
                 listOfEditButtons[i].addEventListener("click", function (e) {
                     let taskToEdit = System.findTaskById(e.target.parentNode.id);
                     userInterface.openTaskEditDialog(taskToEdit);
+                });
+            }
+        }
+
+        function updateProjectListSequence(){
+            //add switch between projects via click
+            userInterface.updateProjectList(System.Projects);
+            updateProjectListeners();
+        }
+
+        function updateProjectListeners(){
+            let listOfProjects = document.getElementsByClassName("projectItem");
+            for (var i = 0; i<listOfProjects.length;i++){
+                listOfProjects[i].addEventListener("click", function (e){
+                    System.select(e.target.id);
+                    updateTaskListSequence();
                 });
             }
         }
