@@ -52,6 +52,10 @@ export const System = {
         taskToEdit.status = taskInformation[3];
     },
 
+    handleTaskDelete(taskToDeleteID){
+        this.getCurrentProject().removeTask(taskToDeleteID);
+    },
+
     findProjectByID(id){
         return this._projects.findIndex(project => project.projectId === id);
     },

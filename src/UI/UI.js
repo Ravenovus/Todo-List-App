@@ -8,6 +8,7 @@ export const userInterface ={
     projectDial : document.querySelector("#projectDialog"),
     taskDial : document.querySelector("#taskDialog"),
     taskEditDial : document.querySelector("#taskEditDialog"),
+    taskDeleteDial : document.querySelector("#taskDeleteDialog"),
 
 
     updateProjectList(projects){
@@ -35,6 +36,8 @@ export const userInterface ={
             let taskDate = document.createElement("div");
             let taskStatus = document.createElement("div");
             let editButton = document.createElement("button");
+            let deleteButton = document.createElement("button");
+            let buttonHolder = document.createElement("div");
             newItem.id = task.taskId;
             taskName.textContent = task.name;
             taskPriority.textContent = task.priority;
@@ -42,12 +45,18 @@ export const userInterface ={
             taskStatus.textContent = task.status;
             editButton.classList.add("editButton");
             editButton.textContent = "EDIT";
+            deleteButton.classList.add("deleteButton");
+            deleteButton.textContent = "DELETE";
+
+            buttonHolder.classList.add("buttonHolder");
+            buttonHolder.appendChild(editButton);
+            buttonHolder.appendChild(deleteButton);
             
             newItem.appendChild(taskName);
             newItem.appendChild(taskPriority);
             newItem.appendChild(taskDate);
             newItem.appendChild(taskStatus);
-            newItem.appendChild(editButton);
+            newItem.appendChild(buttonHolder);
             taskList.appendChild(newItem);
         })
     },
@@ -133,5 +142,14 @@ export const userInterface ={
 
     closeTaskEditDialog(){
         this.taskEditDial.close();
+    },
+
+    openTaskDeleteDialog(){
+        this.taskDeleteDial.showModal();
+    },
+
+    closeTaskDeleteDialog(){
+        this.taskDeleteDial.close();
     }
+
 }

@@ -9,8 +9,11 @@ import { Task } from "../System/Classes/task.js";
 // Rework Task Edit form, must have Status choices as well V
 // Tie in the edit to update onscreen V
 // Add New Project Button V
-// Add switching between the projects functionality
+// Add switching between the projects functionality V
 // Add delete task button next to edit BUT also add a confirmation Modal
+// Output project name and date to top bar
+// Make it so a task cannot be added without project
+// make it so a project that doesnt exist cannot be deleted
 export const organizerController = {
 
     init(){
@@ -102,6 +105,23 @@ export const organizerController = {
                 userInterface.closeTaskEditDialog();
             }
         )
+
+        document.querySelector(".confirmTaskDeletion").addEventListener(
+            "click", function(e){
+                System.handleTaskDelete(e.target.id);
+                userInterface.closeTaskDeleteDialog();
+                updateTaskListSequence();
+            }
+        )
+
+        document.querySelector(".cancelTaskDeletion").addEventListener(
+            "click", function(){
+                userInterface.closeTaskDeleteDialog();
+            }
+        )
+
+
+
         let listOfClickables = document.getElementsByClassName("clickable");
         for(var i = 0; i<listOfClickables.length; i++){
             listOfClickables[i].addEventListener("click", function(e){
@@ -109,23 +129,29 @@ export const organizerController = {
             })
         }
 
-        updateEditFunctionListeners();
+        updateEditDeleteFunctionListeners();
 
 
 
 
         function updateTaskListSequence() {
             userInterface.updateTaskList(System.getCurrentProject().tasks);
-            updateEditFunctionListeners();
+            updateEditDeleteFunctionListeners();
         }
 
-        function updateEditFunctionListeners() {
+        function updateEditDeleteFunctionListeners() {
             let listOfEditButtons = document.getElementsByClassName("editButton");
+            let listOfDeleteButtons = document.getElementsByClassName("deleteButton");
             for (var i = 0; i < listOfEditButtons.length; i++) {
                 listOfEditButtons[i].addEventListener("click", function (e) {
-                    let taskToEdit = System.findTaskById(e.target.parentNode.id);
+                    let taskToEdit = System.findTaskById(e.target.parentNode.parentNode.id);
                     userInterface.openTaskEditDialog(taskToEdit);
                 });
+                listOfDeleteButtons[i].addEventListener("click", function(e){
+                    userInterface.openTaskDeleteDialog();
+                    document.querySelector(".confirmTaskDeletion").id = e.target.parentNode.parentNode.id;
+                    
+                })
             }
         }
 

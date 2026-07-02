@@ -41,10 +41,14 @@ body{
     display: grid;
     width: 100%;
     padding-right: 60px;
-    grid-template-columns: 24% 23% 24% 24% 4% 1%;
+    grid-template-columns: 23% 23% 23% 23% 4% 1%;
     
 }
 
 .formGroup{
     margin:16px;
+}
+
+.buttonHolder{
+    display: flex;
 }
