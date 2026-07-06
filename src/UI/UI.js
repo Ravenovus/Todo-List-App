@@ -24,6 +24,15 @@ export const userInterface ={
         });
     },
 
+    updateProjectHeader(project){
+        console.log("Attempting to update header");
+        console.log(project);
+        let headerProjectName = document.querySelector("#headerProjectTitle");
+        let headerProjectDate = document.querySelector("#headerProjectDate");
+        headerProjectName.textContent = "Current Project: " + project.name;
+        headerProjectDate.textContent = "Planned Completion By: " + project.date;
+    },
+
     updateTaskList(tasks){
         let taskList = document.querySelector(".TaskList");
         this.clearList(taskList);
@@ -115,7 +124,7 @@ export const userInterface ={
 
     closeTaskDialog(){
         document.querySelector("#task_name").value = "";
-        document.querySelector("#task_priority").value = "low";
+        document.querySelector("#task_priority").value = "Low";
         document.querySelector("#due_date").value = "";
         this.taskDial.close();
     },

@@ -10,8 +10,8 @@ import { Task } from "../System/Classes/task.js";
 // Tie in the edit to update onscreen V
 // Add New Project Button V
 // Add switching between the projects functionality V
-// Add delete task button next to edit BUT also add a confirmation Modal
-// Output project name and date to top bar
+// Add delete task button next to edit BUT also add a confirmation Modal V
+// Output project name and date to top bar V
 // Make it so a task cannot be added without project
 // make it so a project that doesnt exist cannot be deleted
 export const organizerController = {
@@ -22,13 +22,14 @@ export const organizerController = {
 
         testProject.addTask(testTask);
         System.addProject(testProject);
-        console.log(System.getCurrentProject());
 
         
 
         userInterface.updateProjectList(System.Projects);
 
         userInterface.updateTaskList(testProject.tasks);
+
+        userInterface.updateProjectHeader(System.getCurrentProject());
 
         this.addListeners();
 
@@ -129,17 +130,17 @@ export const organizerController = {
             })
         }
 
-        updateEditDeleteFunctionListeners();
+        updateEditDeleteTaskListeners();
 
 
 
 
         function updateTaskListSequence() {
             userInterface.updateTaskList(System.getCurrentProject().tasks);
-            updateEditDeleteFunctionListeners();
+            updateEditDeleteTaskListeners();
         }
 
-        function updateEditDeleteFunctionListeners() {
+        function updateEditDeleteTaskListeners() {
             let listOfEditButtons = document.getElementsByClassName("editButton");
             let listOfDeleteButtons = document.getElementsByClassName("deleteButton");
             for (var i = 0; i < listOfEditButtons.length; i++) {
@@ -156,7 +157,6 @@ export const organizerController = {
         }
 
         function updateProjectListSequence(){
-            //add switch between projects via click
             userInterface.updateProjectList(System.Projects);
             updateProjectListeners();
         }
