@@ -9,6 +9,7 @@ export const userInterface ={
     taskDial : document.querySelector("#taskDialog"),
     taskEditDial : document.querySelector("#taskEditDialog"),
     taskDeleteDial : document.querySelector("#taskDeleteDialog"),
+    projectDeleteDial : document.querySelector("#projectDeleteDialog"),
 
 
     updateProjectList(projects){
@@ -25,49 +26,55 @@ export const userInterface ={
     },
 
     updateProjectHeader(project){
-        console.log("Attempting to update header");
-        console.log(project);
+        let name = "";
+        let date = "--/--/--";
+        if(project != null){
+            name = project.name;
+            date = project.date;
+        }
         let headerProjectName = document.querySelector("#headerProjectTitle");
         let headerProjectDate = document.querySelector("#headerProjectDate");
-        headerProjectName.textContent = "Current Project: " + project.name;
-        headerProjectDate.textContent = "Planned Completion By: " + project.date;
+        headerProjectName.textContent = "Current Project: " + name;
+        headerProjectDate.textContent = "Planned Completion By: " + date;
     },
 
     updateTaskList(tasks){
         let taskList = document.querySelector(".TaskList");
         this.clearList(taskList);
-        tasks.forEach(task =>{
-            let newItem = document.createElement("div");
-            newItem.classList.add("taskItem");
-            newItem.classList.add("clickableTask");
-            let taskName = document.createElement("div");
-            let taskPriority = document.createElement("div");
-            let taskDate = document.createElement("div");
-            let taskStatus = document.createElement("div");
-            let editButton = document.createElement("button");
-            let deleteButton = document.createElement("button");
-            let buttonHolder = document.createElement("div");
-            newItem.id = task.taskId;
-            taskName.textContent = task.name;
-            taskPriority.textContent = task.priority;
-            taskDate.textContent = task.dueDate;
-            taskStatus.textContent = task.status;
-            editButton.classList.add("editButton");
-            editButton.textContent = "EDIT";
-            deleteButton.classList.add("deleteButton");
-            deleteButton.textContent = "DELETE";
+        if (tasks != null){
+            tasks.forEach(task =>{
+                let newItem = document.createElement("div");
+                newItem.classList.add("taskItem");
+                newItem.classList.add("clickableTask");
+                let taskName = document.createElement("div");
+                let taskPriority = document.createElement("div");
+                let taskDate = document.createElement("div");
+                let taskStatus = document.createElement("div");
+                let editButton = document.createElement("button");
+                let deleteButton = document.createElement("button");
+                let buttonHolder = document.createElement("div");
+                newItem.id = task.taskId;
+                taskName.textContent = task.name;
+                taskPriority.textContent = task.priority;
+                taskDate.textContent = task.dueDate;
+                taskStatus.textContent = task.status;
+                editButton.classList.add("editButton");
+                editButton.textContent = "EDIT";
+                deleteButton.classList.add("deleteButton");
+                deleteButton.textContent = "DELETE";
 
-            buttonHolder.classList.add("buttonHolder");
-            buttonHolder.appendChild(editButton);
-            buttonHolder.appendChild(deleteButton);
-            
-            newItem.appendChild(taskName);
-            newItem.appendChild(taskPriority);
-            newItem.appendChild(taskDate);
-            newItem.appendChild(taskStatus);
-            newItem.appendChild(buttonHolder);
-            taskList.appendChild(newItem);
-        })
+                buttonHolder.classList.add("buttonHolder");
+                buttonHolder.appendChild(editButton);
+                buttonHolder.appendChild(deleteButton);
+                
+                newItem.appendChild(taskName);
+                newItem.appendChild(taskPriority);
+                newItem.appendChild(taskDate);
+                newItem.appendChild(taskStatus);
+                newItem.appendChild(buttonHolder);
+                taskList.appendChild(newItem);
+            })
+        }
     },
 
     clearList(listToClear){
@@ -159,6 +166,14 @@ export const userInterface ={
 
     closeTaskDeleteDialog(){
         this.taskDeleteDial.close();
+    },
+
+    openProjectDeleteDialog(){
+        this.projectDeleteDial.showModal();
+    },
+
+    closeProjectDeleteDialog(){
+        this.projectDeleteDial.close();
     }
 
 }

@@ -19,11 +19,20 @@
         <div class="TopBar">
             <div id="headerProjectTitle"></div>
             <div id="headerProjectDate"></div>
-            <button id="deleteProject">Delete Current Project</button>
+            <div class="buttonHolder"> 
+                <button id="editProject">Edit Project Information</button>
+                <button id="deleteProject">Delete Current Project</button>
+            </div>
         </div>
         <div class="TaskScreen">
             <div class="TaskWindow">
-                <div>TEST???? <button id="newTaskButton">Add Task +</button></div>
+                <div class="taskTableHeader">
+                    <p>Task Name</p>
+                    <p>Priority</p>
+                    <p>Due Date</p>
+                    <p>Status</p>
+                    <button id="newTaskButton">Add Task</button>
+                </div>
                 <div class="TaskList"></div>
             </div>
         </div>
@@ -49,7 +58,7 @@
         <form action="">
             <div class="formGroup">
                 <label for="task_name">Task Name:</label>
-                <input type="text" name="task_name" id="task_name">
+                <input type="text" name="task_name" id="task_name" maxlength="40">
             </div>
             <div class="formGroup">
                 <label for="task_priority">Priority:</label>
@@ -72,7 +81,7 @@
         <form action="">
             <div class="formGroup">
                 <label for="task_name">Task Name:</label>
-                <input type="text" name="task_name" id="task_name_edit">
+                <input type="text" name="task_name" id="task_name_edit" maxlength="50">
             </div>
             <div class="formGroup">
                 <label for="task_priority">Priority:</label>
@@ -105,6 +114,15 @@
         <div>
             <button class="cancelTaskDeletion">Cancel</button>
             <button class="confirmTaskDeletion">Delete</button>
+        </div>
+    </dialog>
+    <dialog id="projectDeleteDialog">
+        <h1>Confirm Deletion:</h1>
+        <p>Note: This action is irreversible</p>
+        <p>All attached tasks will be deleted</p>
+        <div>
+            <button class="cancelProjectDeletion">Cancel</button>
+            <button class="confirmProjectDeletion">Delete</button>
         </div>
     </dialog>
 </body>

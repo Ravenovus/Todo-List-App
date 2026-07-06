@@ -4,16 +4,7 @@ import { Project } from "../System/Classes/project.js";
 import { Task } from "../System/Classes/task.js";
 
 
-//TOMORROW - MUST
-// Add task addition button to UI, tie in the task addition functionality V
-// Rework Task Edit form, must have Status choices as well V
-// Tie in the edit to update onscreen V
-// Add New Project Button V
-// Add switching between the projects functionality V
-// Add delete task button next to edit BUT also add a confirmation Modal V
-// Output project name and date to top bar V
-// Make it so a task cannot be added without project
-// make it so a project that doesnt exist cannot be deleted
+
 export const organizerController = {
 
     init(){
@@ -121,6 +112,30 @@ export const organizerController = {
             }
         )
 
+        document.querySelector("#deleteProject").addEventListener(
+            "click", function(){
+                if(System.getCurrentProject()){
+                    userInterface.openProjectDeleteDialog();
+                }
+            }
+        )
+
+        document.querySelector(".cancelProjectDeletion").addEventListener(
+            "click", function(){
+                userInterface.closeProjectDeleteDialog();
+            }
+        )
+
+        document.querySelector(".confirmProjectDeletion").addEventListener(
+            "click", function(){
+                System.removeProject(System.getCurrentProject().id)
+                updateProjectListSequence();
+                updateTaskListSequence();
+                userInterface.closeProjectDeleteDialog();
+
+            }
+        )
+
 
 
         let listOfClickables = document.getElementsByClassName("clickable");
@@ -136,7 +151,11 @@ export const organizerController = {
 
 
         function updateTaskListSequence() {
-            userInterface.updateTaskList(System.getCurrentProject().tasks);
+            let tasklist = null;
+            if (System.getCurrentProject()){
+                tasklist = System.getCurrentProject().tasks;
+            }
+            userInterface.updateTaskList(tasklist);
             updateEditDeleteTaskListeners();
         }
 
@@ -158,6 +177,7 @@ export const organizerController = {
 
         function updateProjectListSequence(){
             userInterface.updateProjectList(System.Projects);
+            userInterface.updateProjectHeader(System.getCurrentProject());
             updateProjectListeners();
         }
 
@@ -166,6 +186,7 @@ export const organizerController = {
             for (var i = 0; i<listOfProjects.length;i++){
                 listOfProjects[i].addEventListener("click", function (e){
                     System.select(e.target.id);
+                    userInterface.updateProjectHeader(System.getCurrentProject());
                     updateTaskListSequence();
                 });
             }

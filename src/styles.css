@@ -45,7 +45,15 @@ body{
     display: grid;
     width: 100%;
     padding-right: 60px;
-    grid-template-columns: 23% 23% 23% 23% 4% 1%;
+    grid-template-columns: 44% 15% 15% 15% 4% 1%;
+    padding: 1%;
+    
+}
+
+.taskTableHeader{
+    display: grid;
+    grid-template-columns: 45% 16% 15% 15% 4% 1%;
+    padding:1%;
     
 }
 
