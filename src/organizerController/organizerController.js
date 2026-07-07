@@ -136,6 +136,33 @@ export const organizerController = {
             }
         )
 
+        document.querySelector("#editProject").addEventListener(
+            "click", function(){
+                if(System.getCurrentProject()){
+                    userInterface.openProjectEditDialog(System.getCurrentProject())
+                }
+            }
+        )
+
+        document.querySelector("#cancelProjectEdit").addEventListener(
+            "click", function(){
+                userInterface.closeProjectEditDialog();
+            }
+        )
+
+        document.querySelector("#commmitProjectEdit").addEventListener(
+            "click", function(){
+                let projectInformation = userInterface.readProjectEditModal();
+                if (projectInformation == -1){
+                    console.log("wrong info");
+                    return;
+                }
+                System.handleProjectEdit(projectInformation);
+                userInterface.closeProjectEditDialog();
+                updateProjectListSequence();
+            }
+        )
+
 
 
         let listOfClickables = document.getElementsByClassName("clickable");

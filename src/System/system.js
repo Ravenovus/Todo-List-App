@@ -35,7 +35,8 @@ export const System = {
     },
 
     handleProjectEdit(projectInformation){
-
+        this.getCurrentProject().name = projectInformation[0];
+        this.getCurrentProject().date = projectInformation[1];
     },
 
 

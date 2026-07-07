@@ -16,6 +16,9 @@ export class Project{
     get tasks(){return this._tasks;}
     get projectId(){return this._projectId;}
 
+    set name(value) {this._name = value;}
+    set date(value) {this._date = value;}
+
 
     removeTask(taskToRemoveID){
         let index = this._tasks.findIndex(task => task.taskId === taskToRemoveID);

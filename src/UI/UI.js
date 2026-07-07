@@ -10,6 +10,7 @@ export const userInterface ={
     taskEditDial : document.querySelector("#taskEditDialog"),
     taskDeleteDial : document.querySelector("#taskDeleteDialog"),
     projectDeleteDial : document.querySelector("#projectDeleteDialog"),
+    projectEditDial : document.querySelector("#projectEditDialog"),
 
 
     updateProjectList(projects){
@@ -174,6 +175,30 @@ export const userInterface ={
 
     closeProjectDeleteDialog(){
         this.projectDeleteDial.close();
+    },
+
+    openProjectEditDialog(project){
+        document.querySelector("#project_name_edit").value = project.name;
+        document.querySelector("#expected_date_edit").value = project.date;
+        this.projectEditDial.showModal();
+    },
+
+    closeProjectEditDialog(){
+        this.projectEditDial.close();
+    },
+
+    readProjectEditModal(){
+        let projectInformation = new Array();
+        let projectName = document.querySelector("#project_name_edit").value;
+        let dueDate = document.querySelector("#expected_date_edit").value;
+        if (projectName =="" || dueDate == ""){
+            return -1;
+        }
+        projectInformation[0] = projectName;
+        projectInformation[1] = dueDate;
+        return projectInformation;
     }
+
+
 
 }

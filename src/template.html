@@ -7,10 +7,12 @@
 </head>
 <body>
     <div class="App">
-        <div class="SideBar">TEST
+        <div class="SideBar">
             <div id="titleImage">
 
             </div>
+            <button id="saveAllButton">Save</button>
+            <button id="loadAllButton">Load</button>
             <button id="newProjectButton">New Project</button>
             <div class="ProjectList">
                 
@@ -42,7 +44,7 @@
             <form action="">
             <div class="formGroup">
                 <label for="project_name">Project Name:</label>
-                <input type="text" name="project_name" id="project_name">
+                <input type="text" name="project_name" id="project_name" maxlength="30">
             </div>
             <div class="formGroup">
                 <label for="projected_date">Projected Date:</label>
@@ -124,6 +126,21 @@
             <button class="cancelProjectDeletion">Cancel</button>
             <button class="confirmProjectDeletion">Delete</button>
         </div>
+    </dialog>
+    <dialog id="projectEditDialog">
+        <h1>Edit Project:</h1>
+        <form action="">
+            <div class="formGroup">
+                <label for="project_name">Task Name:</label>
+                <input type="text" name="project_name" id="project_name_edit" maxlength="30">
+            </div>
+            <div class="formGroup">
+                <label for="due_date">Due For:</label>
+                <input type="date" name="due_date" id="expected_date_edit">
+            </div>
+        </form>
+        <button id="cancelProjectEdit">Cancel</button>
+        <button id="commmitProjectEdit">Commit</button>
     </dialog>
 </body>
 </html>
