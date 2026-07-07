@@ -16,7 +16,7 @@ export const organizerController = {
 
         
 
-        userInterface.updateProjectList(System.Projects);
+        userInterface.updateProjectList(System.Projects, System.getCurrentProject());
 
         userInterface.updateTaskList(testProject.tasks);
 
@@ -208,7 +208,7 @@ export const organizerController = {
         }
 
         function updateProjectListSequence(){
-            userInterface.updateProjectList(System.Projects);
+            userInterface.updateProjectList(System.Projects, System.getCurrentProject());
             userInterface.updateProjectHeader(System.getCurrentProject());
             updateProjectListeners();
         }
@@ -218,6 +218,7 @@ export const organizerController = {
             for (var i = 0; i<listOfProjects.length;i++){
                 listOfProjects[i].addEventListener("click", function (e){
                     System.select(e.target.id);
+                    userInterface.updateSelection(e.target.id);
                     userInterface.updateProjectHeader(System.getCurrentProject());
                     updateTaskListSequence();
                 });

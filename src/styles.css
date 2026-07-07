@@ -15,7 +15,11 @@ body{
     background-color: rgb(93, 93, 230);
     grid-column: 1 / 2;
     grid-row: 1 /3;
+    padding-left: 8px;
 
+}
+.SideBar > *{
+    margin: 8px;
 }
 
 .TopBar{
@@ -64,4 +68,8 @@ body{
 
 .buttonHolder{
     display: flex;
+}
+
+.selected{
+    background-color: rgba(20, 163, 20, 0.774);
 }

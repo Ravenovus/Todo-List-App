@@ -14,13 +14,16 @@ export const userInterface ={
     inputErrorDial : document.querySelector("#errorWindow"),
 
 
-    updateProjectList(projects){
+    updateProjectList(projects, currentProject){
         let projectList = document.querySelector(".ProjectList");
         this.clearList(projectList);
         projects.forEach(project => {
             let newItem = document.createElement("div");
             newItem.classList.add("projectItem");
             newItem.classList.add("clickable");
+            if(project.projectId == currentProject.projectId){
+                newItem.classList.add("selected");
+            }
             newItem.id = project.projectId;
             newItem.textContent = project.name;
             projectList.appendChild(newItem);
@@ -206,8 +209,12 @@ export const userInterface ={
 
     closeErrorDialog(){
         this.inputErrorDial.close();
-    }
+    },
 
+    updateSelection(newSelectedProjectId){
+        document.querySelector(".selected").classList.remove("selected");
+        document.getElementById(newSelectedProjectId).classList.add("selected");
+    }
 
 
 }
