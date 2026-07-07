@@ -41,8 +41,8 @@ export const organizerController = {
         document.querySelector("#commitNewProject").addEventListener(
             "click", function(){
                 let projectInformation = userInterface.readNewProjectModal();
-                if(typeof(projectInformation) == "number"){
-                    console.log("WRONG INFO");
+                if(projectInformation == -1){
+                    userInterface.openErrorDialog();
                     return;
                 }
                 System.handleNewProject(projectInformation);
@@ -73,8 +73,8 @@ export const organizerController = {
             "click", function(){
                 let taskInformation = userInterface.readTaskModal();
                 console.log(typeof(taskInformation));
-                if(typeof(taskInformation) == "number"){
-                    console.log("WRONG INFO");
+                if(taskInformation == -1){
+                    userInterface.openErrorDialog();
                     return;
                 }
                 System.handleTaskInsertion(taskInformation);
@@ -87,10 +87,9 @@ export const organizerController = {
         document.querySelector("#editTaskButton").addEventListener(
             "click", function(){
                 let taskInformation = userInterface.readTaskEditModal();
-                console.log(typeof(taskInformation));
-                if(typeof(taskInformation) == "number"){
-                    console.log("WRONG INFO");
-                    return; //Temp form check to be made proper later
+                if(taskInformation == -1){
+                    userInterface.openErrorDialog();
+                    return;
                 }
                 System.handleTaskEdit(taskInformation);
                 updateTaskListSequence();
@@ -154,12 +153,18 @@ export const organizerController = {
             "click", function(){
                 let projectInformation = userInterface.readProjectEditModal();
                 if (projectInformation == -1){
-                    console.log("wrong info");
+                    userInterface.openErrorDialog();
                     return;
                 }
                 System.handleProjectEdit(projectInformation);
                 userInterface.closeProjectEditDialog();
                 updateProjectListSequence();
+            }
+        )
+
+        document.querySelector("#errorUnderstand").addEventListener(
+            "click", function(){
+                userInterface.closeErrorDialog();
             }
         )
 

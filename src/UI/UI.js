@@ -11,6 +11,7 @@ export const userInterface ={
     taskDeleteDial : document.querySelector("#taskDeleteDialog"),
     projectDeleteDial : document.querySelector("#projectDeleteDialog"),
     projectEditDial : document.querySelector("#projectEditDialog"),
+    inputErrorDial : document.querySelector("#errorWindow"),
 
 
     updateProjectList(projects){
@@ -197,6 +198,14 @@ export const userInterface ={
         projectInformation[0] = projectName;
         projectInformation[1] = dueDate;
         return projectInformation;
+    },
+
+    openErrorDialog(){
+        this.inputErrorDial.showModal();
+    },
+
+    closeErrorDialog(){
+        this.inputErrorDial.close();
     }
 
 
