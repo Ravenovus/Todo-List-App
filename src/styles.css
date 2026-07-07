@@ -71,5 +71,9 @@ body{
 }
 
 .selected{
-    background-color: rgba(20, 163, 20, 0.774);
+    background-color: rgba(20, 163, 20, 0.63);
+}
+
+.projectItem{
+    padding:8px;
 }
