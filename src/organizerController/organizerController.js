@@ -8,8 +8,8 @@ import { Task } from "../System/Classes/task.js";
 export const organizerController = {
 
     init(){
-        let testProject = new Project("testProject", "test Date string");
-        let testTask = new Task("testTask", "Medium", "another test");       
+        let testProject = new Project("DEFAULT", "2026-08-07");
+        let testTask = new Task("Default Task", "Medium", "2026-10-05");       
 
         testProject.addTask(testTask);
         System.addProject(testProject);

@@ -1,4 +1,4 @@
-
+import { format } from "date-fns";
 //turn into init() but globaly somehow
 //use CSS to mark selection 
 export const userInterface ={
@@ -40,7 +40,7 @@ export const userInterface ={
         let headerProjectName = document.querySelector("#headerProjectTitle");
         let headerProjectDate = document.querySelector("#headerProjectDate");
         headerProjectName.textContent = "Current Project: " + name;
-        headerProjectDate.textContent = "Planned Completion By: " + date;
+        headerProjectDate.textContent = "Planned Completion By: " + format(date,"dd/MM/yyyy");
     },
 
     updateTaskList(tasks){
@@ -61,7 +61,7 @@ export const userInterface ={
                 newItem.id = task.taskId;
                 taskName.textContent = task.name;
                 taskPriority.textContent = task.priority;
-                taskDate.textContent = task.dueDate;
+                taskDate.textContent = format(task.dueDate, "dd/MM/yyyy");
                 taskStatus.textContent = task.status;
                 editButton.classList.add("editButton");
                 editButton.textContent = "EDIT";
