@@ -215,7 +215,7 @@ export const organizerController = {
         }
 
         updateEditDeleteTaskListeners();
-
+        updateProjectListeners();
 
 
 
@@ -225,6 +225,7 @@ export const organizerController = {
                 tasklist = System.getCurrentProject().tasks;
             }
             userInterface.updateTaskList(tasklist);
+            storageManager.save(System.saveData());
             updateEditDeleteTaskListeners();
         }
 
@@ -245,6 +246,7 @@ export const organizerController = {
         }
 
         function updateProjectListSequence(){
+            storageManager.save(System.saveData());
             userInterface.updateProjectList(System.Projects, System.getCurrentProject());
             userInterface.updateProjectHeader(System.getCurrentProject());
             updateProjectListeners();
