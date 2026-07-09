@@ -7,7 +7,7 @@ export class Task{
 
     constructor(name,priority,date){
         this._name = name;
-        this._priority = priority; //probably needs a function of its own to convert into numeric, OR just keep as str, that works too
+        this._priority = priority;
         this._dueDate = date;
         this._status = "In Progress";
         this._taskId = crypto.randomUUID();
@@ -24,7 +24,4 @@ export class Task{
     set dueDate(value){this._dueDate = value;}
     set status(value){this._status = value;}
     set taskId(value){this._taskId = value;}
-
-
-
 }

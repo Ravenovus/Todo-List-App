@@ -1,10 +1,7 @@
 import { format } from "date-fns";
-//turn into init() but globaly somehow
-//use CSS to mark selection 
+
 export const userInterface ={
-    
-    //projectList: document.getElementsByClassName("ProjectList"),
-    //tastWindow: document.querySelector(".TaskWindow"),
+
     projectDial : document.querySelector("#projectDialog"),
     taskDial : document.querySelector("#taskDialog"),
     taskEditDial : document.querySelector("#taskEditDialog"),
@@ -103,7 +100,6 @@ export const userInterface ={
 
     readTaskModal(){
         let taskInformation = new Array();
-        //add form check here, return a flag to organizer to catch if its wrong
         let taskName = document.querySelector("#task_name").value;
         let dueDate = document.querySelector("#due_date").value;
         if (taskName =="" || dueDate == ""){

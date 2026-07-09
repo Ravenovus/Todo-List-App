@@ -4,7 +4,7 @@ import { Task } from "./Classes/task.js";
 //backend class
 export const System = {
     _projects : new Array(),
-    _currentSelected : null, //use for the add task modal to add to the correct one
+    _currentSelected : null,
 
     loadData(savedData){ 
         this._currentSelected = savedData.currentSelected;
@@ -25,7 +25,6 @@ export const System = {
             });
             return project;
         });
-    
     },
 
     clearData(){
@@ -45,9 +44,7 @@ export const System = {
                     dueDate : task.dueDate,
                     status : task.status,
                     taskId : task.taskId
-
                 }))
-
             }))
         };
         return dataToSave;
@@ -85,9 +82,7 @@ export const System = {
         this.getCurrentProject().name = projectInformation[0];
         this.getCurrentProject().date = projectInformation[1];
     },
-
-
-    
+ 
     handleTaskInsertion(taskInformation){
         let newTask = new Task(taskInformation[0],taskInformation[1],taskInformation[2]);
         this.Projects[this.findProjectByID(this._currentSelected)].addTask(newTask);
@@ -122,7 +117,4 @@ export const System = {
     findTaskById(id){
         return this._projects[this.getCurrentProjectIndex()].getTaskById(id);
     }
-
-
-
 }

@@ -5,22 +5,14 @@ import { Task } from "../System/Classes/task.js";
 import { storageManager } from "../storageManager/storageManager.js";
 
 
-
 export const organizerController = {
 
     init(){
-
         this.initialLoad();
-
         userInterface.updateProjectList(System.Projects, System.getCurrentProject());
-
         userInterface.updateTaskList(System.getCurrentProject().tasks);
-
         userInterface.updateProjectHeader(System.getCurrentProject());
-
         this.addListeners();
-
-        
     },
 
     initialLoad(){
@@ -205,8 +197,6 @@ export const organizerController = {
             }
         )
 
-
-
         let listOfClickables = document.getElementsByClassName("clickable");
         for(var i = 0; i<listOfClickables.length; i++){
             listOfClickables[i].addEventListener("click", function(e){
@@ -216,8 +206,6 @@ export const organizerController = {
 
         updateEditDeleteTaskListeners();
         updateProjectListeners();
-
-
 
         function updateTaskListSequence() {
             let tasklist = null;
