@@ -3,9 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ToDo List App</title>
 <script defer src="main.js"></script></head>
 <body>
-    
+    <div class="App">
+        <div class="SideBar">
+            <div id="titleImage">
+                <img src="469fe8d91a18e7370433.png" height="60px">
+                Project Organizer
+            </div>
+            <button id="newProjectButton">New Project</button>
+            <button id="clearData">Clear All Data</button>
+            <div class="ProjectList">
+                
+            </div>
+        </div>
+        <div class="TopBar">
+            <div id="headerProjectTitle"></div>
+            <div id="headerProjectDate"></div>
+            <div class="buttonHolder"> 
+                <button id="editProject">Edit Project Information</button>
+                <button id="deleteProject">Delete Current Project</button>
+            </div>
+        </div>
+        <div class="TaskScreen">
+            <div class="TaskWindow">
+                <div class="taskTableHeader">
+                    <p>Task Name</p>
+                    <p>Priority</p>
+                    <p>Due Date</p>
+                    <p>Status</p>
+                    <button id="newTaskButton">Add Task</button>
+                </div>
+                <div class="TaskList"></div>
+            </div>
+        </div>
+    </div>
+    <dialog id="projectDialog">
+        <h1>Start new project:</h1>
+            <form action="">
+            <div class="formGroup">
+                <label for="project_name">Project Name:</label>
+                <input type="text" name="project_name" id="project_name" maxlength="30">
+            </div>
+            <div class="formGroup">
+                <label for="projected_date">Projected Date:</label>
+                <input type="date" name="projected_date" id="projected_date">
+            </div>
+            
+        </form>
+        <button id="cancelProjectAddition">Cancel</button>
+        <button id="commitNewProject">Commit</button>
+    </dialog>
+    <dialog id="taskDialog">
+        <h1>Add new task:</h1>
+        <form action="">
+            <div class="formGroup">
+                <label for="task_name">Task Name:</label>
+                <input type="text" name="task_name" id="task_name" maxlength="40">
+            </div>
+            <div class="formGroup">
+                <label for="task_priority">Priority:</label>
+                <select name="task_priority" id="task_priority">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class="formGroup">
+                <label for="due_date">Due For:</label>
+                <input type="date" name="due_date" id="due_date">
+            </div>
+        </form>
+        <button id="cancelTaskAddition">Cancel</button>
+        <button id="addTaskButton">Add</button>
+    </dialog>
+     <dialog id="taskEditDialog">
+        <h1>Edit task:</h1>
+        <form action="">
+            <div class="formGroup">
+                <label for="task_name">Task Name:</label>
+                <input type="text" name="task_name" id="task_name_edit" maxlength="50">
+            </div>
+            <div class="formGroup">
+                <label for="task_priority">Priority:</label>
+                <select name="task_priority" id="task_priority_edit">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class="formGroup">
+                <label for="due_date">Due For:</label>
+                <input type="date" name="due_date" id="due_date_edit">
+            </div>
+            <div class="formGroup">
+                <label for="task_status">Status:</label>
+                <select name="task_status" id="task_status_edit">
+                    <option value="In Progress">In Progress</option>
+                    <option value="Delayed/Frozen">Delayed/Frozen</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+        </form>
+        <div class="id_holder""></div>
+        <button id="cancelTaskEdit">Cancel</button>
+        <button id="editTaskButton">Commit</button>
+    </dialog>
+    <dialog id="taskDeleteDialog">
+        <h1>Confirm Deleteion:</h1>
+        <p>Note: This action is irreversible</p>
+        <div>
+            <button class="cancelTaskDeletion">Cancel</button>
+            <button class="confirmTaskDeletion">Delete</button>
+        </div>
+    </dialog>
+    <dialog id="projectDeleteDialog">
+        <h1>Confirm Deletion:</h1>
+        <p>Note: This action is irreversible</p>
+        <p>All attached tasks will be deleted</p>
+        <div>
+            <button class="cancelProjectDeletion">Cancel</button>
+            <button class="confirmProjectDeletion">Delete</button>
+        </div>
+    </dialog>
+    <dialog id="projectEditDialog">
+        <h1>Edit Project:</h1>
+        <form action="">
+            <div class="formGroup">
+                <label for="project_name">Task Name:</label>
+                <input type="text" name="project_name" id="project_name_edit" maxlength="30">
+            </div>
+            <div class="formGroup">
+                <label for="due_date">Due For:</label>
+                <input type="date" name="due_date" id="expected_date_edit">
+            </div>
+        </form>
+        <button id="cancelProjectEdit">Cancel</button>
+        <button id="commmitProjectEdit">Commit</button>
+    </dialog>
+    <dialog id="errorWindow">
+        <h1>Input Error:</h1>
+        <h3>Name cannot be empty</h3>
+        <h3>Date must be set</h3>
+        <button id="errorUnderstand">I Understand</button>
+    </dialog>
+    <dialog id="clearAllDataWindow">
+        <h1>Clear all saved data</h1>
+        <h1>and reset to initial settings?</h1>
+        <p>Note: This action is irreversible</p>
+        <button id="cancelClearData">Cancel</button>
+        <button id="commitClearData">Confirm</button>
+    </dialog>
 </body>
 </html>
