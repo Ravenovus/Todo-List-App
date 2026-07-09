@@ -3,6 +3,9 @@ A basic project and task organizer built with vanilla Javascript and webpack.
 Created as part of The Odin Project full stack developer curriculum
 No AI was used in its production.
 
+## Deployed Link
+https://ravenovus.github.io/Todo-List-App/
+
 ## Features
 - Multiple projects and tasks organization
 - Editing information in both projects and tasks
@@ -15,4 +18,5 @@ No AI was used in its production.
 - date-fns
 - CSS
 
-# Project Structure
+## Project Structure
+![](https://github.com/Ravenovus/Todo-List-App/blob/main/project_organization.svg)
