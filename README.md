@@ -1,6 +1,6 @@
 # ToDo List App (Project Organizer)
-A basic project and task organizer built with vanilla Javascript and webpack.
-Created as part of The Odin Project full stack developer curriculum
+A basic project and task organizer built with vanilla Javascript and webpack.\
+Created as part of The Odin Project full stack developer curriculum\
 No AI was used in its production.
 
 ## Deployed Link
