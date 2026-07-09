@@ -18,6 +18,8 @@ export class Project{
 
     set name(value) {this._name = value;}
     set date(value) {this._date = value;}
+    set projectId(value) {this._projectId = value;}
+    set tasks(value) {this._tasks = value;}
 
 
     removeTask(taskToRemoveID){

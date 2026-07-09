@@ -2,23 +2,19 @@ import {System} from "../System/system.js";
 import { userInterface } from "../UI/UI.js";
 import { Project } from "../System/Classes/project.js";
 import { Task } from "../System/Classes/task.js";
+import { storageManager } from "../storageManager/storageManager.js";
 
 
 
 export const organizerController = {
 
     init(){
-        let testProject = new Project("DEFAULT", "2026-08-07");
-        let testTask = new Task("Default Task", "Medium", "2026-10-05");       
 
-        testProject.addTask(testTask);
-        System.addProject(testProject);
-
-        
+        this.initialLoad();
 
         userInterface.updateProjectList(System.Projects, System.getCurrentProject());
 
-        userInterface.updateTaskList(testProject.tasks);
+        userInterface.updateTaskList(System.getCurrentProject().tasks);
 
         userInterface.updateProjectHeader(System.getCurrentProject());
 
@@ -27,7 +23,48 @@ export const organizerController = {
         
     },
 
+    initialLoad(){
+        let dataToLoad = storageManager.load();
+        if (dataToLoad){
+            System.loadData(dataToLoad);
+        }
+        else{
+            this.createDefault();
+        }
+    },
+
+    createDefault(){
+        let defaultProject = new Project("DEFAULT", "2026-08-07");
+        let defaultTask = new Task("Default Task", "Medium", "2026-10-05");   
+        
+        defaultProject.addTask(defaultTask);
+        System.addProject(defaultProject);
+    },
+
     addListeners(){
+        document.querySelector("#clearData").addEventListener(
+            "click", function(){
+                userInterface.openClearDataDialog();
+            }
+        ),
+
+        document.querySelector("#cancelClearData").addEventListener(
+            "click", function(){
+                userInterface.closeClearDataDialog();
+            }
+        ),
+
+        document.querySelector("#commitClearData").addEventListener(
+            "click", function(){
+                userInterface.closeClearDataDialog();
+                storageManager.clearData();
+                System.clearData();
+                organizerController.initialLoad();
+                updateProjectListSequence();
+                updateTaskListSequence();
+            }
+        )
+
         document.querySelector("#newProjectButton").addEventListener(
             "click", function(){
                 userInterface.openProjectDialog();

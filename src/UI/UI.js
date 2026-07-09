@@ -12,6 +12,7 @@ export const userInterface ={
     projectDeleteDial : document.querySelector("#projectDeleteDialog"),
     projectEditDial : document.querySelector("#projectEditDialog"),
     inputErrorDial : document.querySelector("#errorWindow"),
+    clearDataDial : document.querySelector("#clearAllDataWindow"),
 
 
     updateProjectList(projects, currentProject){
@@ -214,6 +215,14 @@ export const userInterface ={
     updateSelection(newSelectedProjectId){
         document.querySelector(".selected").classList.remove("selected");
         document.getElementById(newSelectedProjectId).classList.add("selected");
+    },
+
+    openClearDataDialog(){
+        this.clearDataDial.showModal();
+    },
+
+    closeClearDataDialog(){
+        this.clearDataDial.close();
     }
 
 

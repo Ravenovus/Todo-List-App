@@ -23,6 +23,7 @@ export class Task{
     set priority(value){this._priority = value;}
     set dueDate(value){this._dueDate = value;}
     set status(value){this._status = value;}
+    set taskId(value){this._taskId = value;}
 
 
 

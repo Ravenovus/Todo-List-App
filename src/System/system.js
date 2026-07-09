@@ -6,6 +6,53 @@ export const System = {
     _projects : new Array(),
     _currentSelected : null, //use for the add task modal to add to the correct one
 
+    loadData(savedData){ 
+        this._currentSelected = savedData.currentSelected;
+        this._projects = savedData.projects.map(savedProject =>{
+            let project = new Project(savedProject.name, savedProject.date);
+            project.projectId = savedProject.projectId;
+
+            project.tasks = savedProject.tasks.map( savedTask =>{
+                let task = new Task(
+                    savedTask.name,
+                    savedTask.priority,
+                    savedTask.dueDate
+                );
+                task.status = savedTask.status;
+                task.taskId = savedTask.taskId;
+
+                return task;
+            });
+            return project;
+        });
+    
+    },
+
+    clearData(){
+        this._projects = new Array();
+    },
+
+    saveData(){
+        let dataToSave = {
+            currentSelected : this._currentSelected,
+            projects : this._projects.map (project =>({
+                name : project.name,
+                date : project.date,
+                projectId : project.projectId,
+                tasks: project.tasks.map(task =>({
+                    name : task.name,
+                    priority : task.priority,
+                    dueDate : task.dueDate,
+                    status : task.status,
+                    taskId : task.taskId
+
+                }))
+
+            }))
+        };
+        return dataToSave;
+    },
+
     addProject(newProject){
         this._projects.push(newProject);
         this._currentSelected = newProject.projectId;
